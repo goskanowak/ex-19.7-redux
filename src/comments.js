@@ -15,21 +15,23 @@ function comments(state = [], action) {
           , ...state.comments];
           
     case REMOVE_COMMENT:
-      return state.comments.filter(comment => comment.id !== action.id) 
-          // w metodzie filter przekazujemy callback, który jest wykonywany po każdym el tablicy comments, odsiewa te które nie spełniają warunku tego samego id.
+      return state.comments.filter(comment => 
+        comment.id !== action.id);
           
     case EDIT_COMMENT:
       return state.map(comment => {
-          if (comment.id === action.id) {
-            return {...comment, text: action.text} 
-          } 
-          return comment;
+        if (comment.id === action.id) {
+          return {...comment, 
+            text: action.text} 
+        } 
+        return comment;
       });
           
     case THUMB_DOWN_COMMENT:
       return state.map(comment => {
         if (comment.id === action.id) {
-          return {...comment, votes: comment.votes - 1}
+          return {...comment, 
+            votes: comment.votes - 1}
         } 
         return comment;
       });
@@ -37,11 +39,13 @@ function comments(state = [], action) {
     case THUMB_UP_COMMENT: 
       return state.map(comment => {
         if (comment.id === action.id) {
-          return {...comment, votes: comment.votes + 1}
-          }
-          return comment;
+          return {...comment, 
+            votes: comment.votes + 1}
+        }
+        return comment;
       });
-     default:
+          
+    default:
       return state;   
   }
 }
